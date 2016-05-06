@@ -1,28 +1,17 @@
 #include "level1_scene.hpp"
+#include "FlyingMachine.hpp"
 #include <iostream>
 #include <SFML/Graphics.hpp>
 
 level1_scene::level1_scene(void) {}
 
 state level1_scene::Run(sf::RenderWindow& App) {
-    // sf::Font Font;
-    //
-    // if (!Font.loadFromFile("verdanab.ttf")) {
-    //     std::cerr << "Error loading verdanab.ttf" << std::endl;
-    //     return state::stop;
-    // }
-    // sf::Text Menu1;
-    // Menu1.setFont(Font);
-    // Menu1.setCharacterSize(20);
-    // Menu1.setString("play");
-    // Menu1.setPosition(sf::Vector2f(280.f, 160.f));
-
-    sf::Sprite  player;
-    sf::Texture player_texture;
+    FlyingMachine player;
+    sf::Texture   player_texture;
 
     player_texture.loadFromFile("player_plane.png");
     player.setTexture(player_texture);
-    double move_speed = 10;
+    float move_speed = 10;
 
     // run the program as long as the App is open
     while (App.isOpen())
@@ -45,19 +34,19 @@ state level1_scene::Run(sf::RenderWindow& App) {
                 switch (Event.key.code)
                 {
                 case sf::Keyboard::W:
-                    player.move(0, -time_rate * move_speed);
+                    player.set_velocity(0, -1);
                     break;
 
                 case sf::Keyboard::S:
-                    player.move(0, time_rate * move_speed);
+                    player.set_velocity(0, 1);
                     break;
 
                 case sf::Keyboard::A:
-                    player.move(-1 * time_rate * move_speed, 0);
+                    player.set_velocity(-1, 0);
                     break;
 
                 case sf::Keyboard::D:
-                    player.move(time_rate * move_speed, 0);
+                    player.set_velocity(1, 0);
                     break;
 
                 default:
@@ -71,6 +60,7 @@ state level1_scene::Run(sf::RenderWindow& App) {
 
         // draw everything here...
         // App.draw(...);
+        player.auto_move();
         App.draw(player);
 
         // end the current frame
