@@ -11,6 +11,8 @@ int main()
     // Window creation
     sf::RenderWindow App(sf::VideoMode(640, 480), "The Trueman Show");
 
+    App.setFramerateLimit(60);
+
     // Mouse cursor no more visible
     App.setMouseCursorVisible(false);
 

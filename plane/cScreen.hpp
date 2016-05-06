@@ -8,6 +8,7 @@ enum state { level1, menu, stop };
 class cScreen {
 public:
 
+    double time_rate = 1;
     virtual state Run(sf::RenderWindow& App) = 0;
 };
 
