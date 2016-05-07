@@ -22,8 +22,8 @@ int main()
     state screen = state::menu;
     menu_scene   ms;
     level1_scene scene1;
-    Screens[state::menu]   = &ms;
-    Screens[state::level1] = &scene1;
+    Screens[state::menu] = &ms;
+    Screens[state::game] = &scene1;
 
     // Main loop
     while (screen != state::stop)

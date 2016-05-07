@@ -2,7 +2,7 @@
 #define C_SCREEN_HPP__
 
 
-enum state { level1, menu, stop };
+enum state { game, menu, stop };
 
 #include <SFML/Graphics.hpp>
 class cScreen {

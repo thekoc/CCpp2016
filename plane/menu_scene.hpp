@@ -10,6 +10,7 @@ private:
 
 public:
 
+    bool muted = false;
     menu_scene(void);
     virtual state Run(sf::RenderWindow& App);
 };

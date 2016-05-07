@@ -4,15 +4,17 @@
 #include <SFML/Graphics.hpp>
 #include "Entity.hpp"
 
+class FlyingMachine;
 class Universe {
 private:
 
     sf::Clock clock;
-    bool  bullet_time = false;
-    float bullet_time_duration;
+    bool      bullet_time = false;
+    float     bullet_time_duration;
 
 public:
 
+    FlyingMachine *player;
     float time_rate;
     std::vector<Entity *> Entities;
 
@@ -21,6 +23,7 @@ public:
     void bullet_time_on(float duration = -1);
     void update_bullet_time_mode();
     void bind(Entity *entity);
+    virtual ~Universe();
 };
 
 

@@ -23,3 +23,9 @@ void Universe::update_bullet_time_mode() {
         }
     }
 }
+
+Universe::~Universe() {
+    for (auto e: Entities) {
+        delete e;
+    }
+}

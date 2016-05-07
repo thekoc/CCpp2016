@@ -14,6 +14,7 @@ private:
 
 public:
 
+    sf::Texture *texture;
     FlyingMachine(Universe *universe);
     float get_time_rate() const;
 

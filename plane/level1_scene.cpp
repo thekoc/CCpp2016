@@ -3,16 +3,19 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 
-level1_scene::level1_scene(void) {}
+level1_scene::level1_scene(void) {
+    FlyingMachine *player = new FlyingMachine(&universe);
+
+    universe.player = player;
+    player->texture = new sf::Texture();
+    sf::Texture *player_texture = player->texture;
+
+    player_texture->loadFromFile("player_plane.png");
+    player->setTexture(*player_texture);
+}
 
 state level1_scene::Run(sf::RenderWindow& App) {
-    Universe universe(1);
-
-    FlyingMachine player(&universe);
-    sf::Texture   player_texture;
-
-    player_texture.loadFromFile("player_plane.png");
-    player.setTexture(player_texture);
+    FlyingMachine *player = universe.player;
 
     while (App.isOpen())
     {
@@ -32,6 +35,9 @@ state level1_scene::Run(sf::RenderWindow& App) {
                 case sf::Keyboard::L:
                     universe.bullet_time_on();
                     break;
+
+                case sf::Keyboard::Escape:
+                    return state::menu;
 
                 default:
                     break;
@@ -65,15 +71,15 @@ state level1_scene::Run(sf::RenderWindow& App) {
         }
 
 
-        player.set_velocity(v);
+        player->set_velocity(v);
 
         // clear the App with black color
         App.clear();
 
         // draw everything here...
         // App.draw(...);
-        player.auto_move();
-        App.draw(player);
+        player->auto_move();
+        App.draw(*player);
 
         // end the current frame
         App.display();
