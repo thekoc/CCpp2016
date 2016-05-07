@@ -38,7 +38,9 @@ void config_text(sf::Text *text, sf::String content,
 void enable_sound(std::vector<sf::Text *>& menus,
                   sf::Text               & mute_menu,
                   sf::RenderWindow       & App,
-                  bool                   & muted) {
+                  bool                   & muted,
+                  menu_scene             & ms) {
+    ms.BGM->setVolume(100);
     muted = false;
     mute_menu.setString(L"静音");
     set_center(menus, App);
@@ -47,14 +49,15 @@ void enable_sound(std::vector<sf::Text *>& menus,
 void disable_sound(std::vector<sf::Text *>& menus,
                    sf::Text               & mute_menu,
                    sf::RenderWindow       & App,
-                   bool                   & muted) {
+                   bool                   & muted,
+                   menu_scene             & ms) {
+    ms.BGM->setVolume(0);
     muted = true;
     mute_menu.setString(L"恢复声音");
     set_center(menus, App);
 }
 
 state menu_scene::Run(sf::RenderWindow& App) {
-    std::cout << muted << std::endl;
     sf::Font Font;
 
     if (!Font.loadFromFile("verdanab.ttf")) {
@@ -109,9 +112,9 @@ state menu_scene::Run(sf::RenderWindow& App) {
                         return state::game;
                     } else if (current_menu == 1) {
                         if (muted) {
-                            enable_sound(menus, mute_menu, App, muted);
+                            enable_sound(menus, mute_menu, App, muted, *this);
                         } else {
-                            disable_sound(menus, mute_menu, App, muted);
+                            disable_sound(menus, mute_menu, App, muted, *this);
                         }
                     } else if (current_menu == 2) {
                         return state::stop;

@@ -2,12 +2,15 @@
 #define C_SCREEN_HPP__
 
 
+#include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
+
 enum state { game, menu, stop };
 
-#include <SFML/Graphics.hpp>
 class scene {
 public:
 
+    sf::Sound *BGM;
     float time_rate = 1;
     virtual state Run(sf::RenderWindow& App) = 0;
 };

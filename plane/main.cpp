@@ -24,6 +24,15 @@ int main() {
     scenes[state::menu] = &ms;
     scenes[state::game] = &scene1;
 
+    // sound preparations
+    sf::Sound BGM;
+    sf::SoundBuffer soundbuffer;
+    soundbuffer.loadFromFile("bgm.wav");
+    BGM.setBuffer(soundbuffer);
+    BGM.setVolume(100);
+    BGM.play();
+    ms.BGM = &BGM;
+
     // Main loop
     while (screen != state::stop) {
         screen = scenes[screen]->Run(App);
