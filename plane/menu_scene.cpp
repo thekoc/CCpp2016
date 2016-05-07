@@ -18,11 +18,8 @@ state menu_scene::Run(sf::RenderWindow& App) {
     Menu1.setPosition(sf::Vector2f(280.f, 160.f));
 
 
-    // run the program as long as the App is open
     while (App.isOpen())
     {
-        // check all the App's events that were triggered since the last
-        // iteration of the loop
         sf::Event Event;
 
         while (App.pollEvent(Event))
@@ -50,7 +47,6 @@ state menu_scene::Run(sf::RenderWindow& App) {
         // clear the App with black color
         App.clear();
 
-        // draw everything here...
         // App.draw(...);
         App.draw(Menu1);
 

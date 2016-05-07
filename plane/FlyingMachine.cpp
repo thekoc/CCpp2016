@@ -35,7 +35,7 @@ void FlyingMachine::set_velocity(float x, float y) {
     }
 }
 
-float FlyingMachine::speed() {
+float FlyingMachine::speed() const {
     return cal_module(velocity.x, velocity.y);
 }
 

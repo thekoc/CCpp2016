@@ -1,5 +1,6 @@
 #ifndef FLYING_MACHINE_HPP__
 #define FLYING_MACHINE_HPP__
+
 #include "Universe.hpp"
 #include <iostream>
 #include <SFML/Graphics.hpp>
@@ -23,7 +24,7 @@ public:
                        float y);
     void  set_velocity(sf::Vector2f new_v);
 
-    float speed();
+    float speed() const;
 
     sf::Vector2f accelerate = sf::Vector2f(0, 0);
     void  set_accelerate(float x,
@@ -31,7 +32,7 @@ public:
     void  set_accelerate(sf::Vector2f na);
 
     void  auto_move();
-    float max_speed = 1;
+    float max_speed = 5;
 };
 
 

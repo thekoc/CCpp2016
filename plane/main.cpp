@@ -9,12 +9,12 @@ int main()
     std::map<state, cScreen *> Screens;
 
     // Window creation
-    sf::RenderWindow App(sf::VideoMode(640, 480), "The Trueman Show");
+    sf::RenderWindow App(sf::VideoMode(800, 600), "The Trueman Show");
 
     App.setFramerateLimit(60);
 
     // Mouse cursor no more visible
-    App.setMouseCursorVisible(false);
+    // App.setMouseCursorVisible(false);
 
     // Screens preparations
     state screen = state::menu;
