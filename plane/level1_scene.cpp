@@ -6,7 +6,9 @@
 level1_scene::level1_scene(void) {}
 
 state level1_scene::Run(sf::RenderWindow& App) {
-    FlyingMachine player;
+    Universe universe(1);
+
+    FlyingMachine player(&universe);
     sf::Texture   player_texture;
 
     player_texture.loadFromFile("player_plane.png");
@@ -22,6 +24,17 @@ state level1_scene::Run(sf::RenderWindow& App) {
             if (Event.type == sf::Event::Closed)
             {
                 return state::stop;
+            }
+
+            if (Event.KeyPressed) {
+                switch (Event.key.code) {
+                case sf::Keyboard::L:
+                    universe.time_rate = 0.1;
+                    break;
+
+                default:
+                    break;
+                }
             }
         }
 

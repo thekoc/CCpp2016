@@ -2,6 +2,7 @@
 #define UNIVERSE_HPP__
 #include <iostream>
 #include <SFML/Graphics.hpp>
+#include "Entity.hpp"
 
 class Universe {
 private:
@@ -9,10 +10,10 @@ private:
 public:
 
     float time_rate;
-    std::vector<sf::Sprite *> Sprites;
+    std::vector<Entity *> Entities;
     Universe(float time_rate) : time_rate(time_rate) {}
 
-    virtual ~Universe();
+    void bind(Entity *entity);
 };
 
 

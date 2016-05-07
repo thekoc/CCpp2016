@@ -5,11 +5,8 @@
 #include <SFML/Graphics.hpp>
 
 FlyingMachine::FlyingMachine(Universe *universe) {
-    this->universe = universe;
-    time_rate      = universe->time_rate;
+    universe->bind(this);
 }
-
-FlyingMachine::FlyingMachine() {}
 
 float cal_module(float x, float y) {
     return sqrt(pow(x, 2) + pow(y, 2));
@@ -55,6 +52,16 @@ void FlyingMachine::set_accelerate(float x, float y) {
 }
 
 void FlyingMachine::auto_move() {
+    float time_rate = get_time_rate();
+
     set_velocity(velocity + time_rate * accelerate);
     this->move(time_rate * velocity);
+}
+
+float FlyingMachine::get_time_rate() const {
+    if (__time_rate == 0) {
+        return universe->time_rate;
+    } else {
+        return __time_rate;
+    }
 }

@@ -2,21 +2,20 @@
 #define FLYING_MACHINE_HPP__
 
 #include "Universe.hpp"
+#include "Entity.hpp"
 #include <iostream>
 #include <SFML/Graphics.hpp>
 
-class FlyingMachine : public sf::Sprite {
+class FlyingMachine : public Entity {
 private:
 
     sf::Vector2f velocity = sf::Vector2f(0, 0);
+    float __time_rate     = 0;
 
 public:
 
-    FlyingMachine();
     FlyingMachine(Universe *universe);
-    Universe *universe = NULL;
-
-    float time_rate = 1;
+    float get_time_rate() const;
 
     void  set_velocity_direction(float x,
                                  float y);
