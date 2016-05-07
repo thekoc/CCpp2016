@@ -7,20 +7,31 @@
 class FlyingMachine : public sf::Sprite {
 private:
 
+    sf::Vector2f velocity = sf::Vector2f(0, 0);
+
 public:
 
     FlyingMachine();
-    Universe *universe = NULL;
     FlyingMachine(Universe *universe);
+    Universe *universe = NULL;
+
     float time_rate = 1;
+
     void  set_velocity_direction(float x,
                                  float y);
     void  set_velocity(float x,
                        float y);
+    void  set_velocity(sf::Vector2f new_v);
+
     float speed();
-    sf::Vector2f velocity   = sf::Vector2f(0, 0);
+
     sf::Vector2f accelerate = sf::Vector2f(0, 0);
+    void  set_accelerate(float x,
+                         float y);
+    void  set_accelerate(sf::Vector2f na);
+
     void  auto_move();
+    float max_speed = 1;
 };
 
 

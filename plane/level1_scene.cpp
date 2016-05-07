@@ -19,6 +19,7 @@ state level1_scene::Run(sf::RenderWindow& App) {
         // check all the App's events that were triggered since the last
         // iteration of the loop
         sf::Event Event;
+        bool key_pressed = false;
 
         while (App.pollEvent(Event))
         {
@@ -28,32 +29,64 @@ state level1_scene::Run(sf::RenderWindow& App) {
                 return state::stop;
             }
 
-            // Key pressed
-            if (Event.type == sf::Event::KeyPressed)
-            {
-                switch (Event.key.code)
-                {
-                case sf::Keyboard::W:
-                    player.set_velocity(0, -1);
-                    break;
-
-                case sf::Keyboard::S:
-                    player.set_velocity(0, 1);
-                    break;
-
-                case sf::Keyboard::A:
-                    player.set_velocity(-1, 0);
-                    break;
-
-                case sf::Keyboard::D:
-                    player.set_velocity(1, 0);
-                    break;
-
-                default:
-                    break;
-                }
-            }
+            // // Key pressed
+            // if (Event.type == sf::Event::KeyPressed)
+            // {
+            //     key_pressed = true;
+            //
+            //     switch (Event.key.code)
+            //     {
+            //     case sf::Keyboard::W:
+            //         std::cout << "W" << std::endl;
+            //         player.set_accelerate(0, -0.05);
+            //         break;
+            //
+            //     case sf::Keyboard::S:
+            //         std::cout << "S" << std::endl;
+            //         player.set_accelerate(0, 0.05);
+            //         break;
+            //
+            //     case sf::Keyboard::A:
+            //         std::cout << "A" << std::endl;
+            //         player.set_accelerate(-0.05, 0);
+            //         break;
+            //
+            //     case sf::Keyboard::D:
+            //         std::cout << "D" << std::endl;
+            //         player.set_accelerate(0.05, 0);
+            //         break;
+            //
+            //     default:
+            //         break;
+            //     }
+            // }
+            //
+            // if (!key_pressed) {
+            //     player.set_accelerate(0, 0);
+            // }
         }
+
+        // key event
+        float speed = 1;
+        sf::Vector2f v;
+        sf::Keyboard::Key latest_key;
+
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) { v.y       -= speed;
+                                                           latest_key =
+                                                               sf::Keyboard::W; }
+
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) { v.y       += speed;
+                                                           latest_key =
+                                                               sf::Keyboard::S; }
+
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) { v.x       -= speed;
+                                                           latest_key =
+                                                               sf::Keyboard::A; }
+
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) { v.x       += speed;
+                                                           latest_key =
+                                                               sf::Keyboard::D; }
+        player.set_velocity(v);
 
         // clear the App with black color
         App.clear();
