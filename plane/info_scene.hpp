@@ -4,9 +4,9 @@
 #include "Universe.hpp"
 #include <iostream>
 #include <SFML/Graphics.hpp>
-#include "cScreen.hpp"
+#include "scene.hpp"
 
-class imag_scene : public cScreen {
+class imag_scene : public scene {
 private:
 
 public:

@@ -3,10 +3,9 @@
 #include <iostream>
 #include "screens.hpp"
 
-int main()
-{
+int main() {
     // Applications variables
-    std::map<state, cScreen *> Screens;
+    std::map<state, scene *> scenes;
 
     // Window creation
     sf::RenderWindow App(sf::VideoMode(1200, 800), "The Trueman Show");
@@ -22,13 +21,12 @@ int main()
     state screen = state::menu;
     menu_scene   ms;
     level1_scene scene1;
-    Screens[state::menu] = &ms;
-    Screens[state::game] = &scene1;
+    scenes[state::menu] = &ms;
+    scenes[state::game] = &scene1;
 
     // Main loop
-    while (screen != state::stop)
-    {
-        screen = Screens[screen]->Run(App);
+    while (screen != state::stop) {
+        screen = scenes[screen]->Run(App);
     }
 
     return EXIT_SUCCESS;

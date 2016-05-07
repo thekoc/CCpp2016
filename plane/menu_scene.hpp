@@ -3,9 +3,9 @@
 
 #include <iostream>
 #include <SFML/Graphics.hpp>
-#include "cScreen.hpp"
+#include "scene.hpp"
 
-class menu_scene : public cScreen {
+class menu_scene : public scene {
 private:
 
 public:

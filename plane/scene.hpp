@@ -5,7 +5,7 @@
 enum state { game, menu, stop };
 
 #include <SFML/Graphics.hpp>
-class cScreen {
+class scene {
 public:
 
     float time_rate = 1;

@@ -17,16 +17,13 @@ level1_scene::level1_scene(void) {
 state level1_scene::Run(sf::RenderWindow& App) {
     FlyingMachine *player = universe.player;
 
-    while (App.isOpen())
-    {
+    while (App.isOpen()) {
         universe.update_bullet_time_mode();
         sf::Event Event;
 
-        while (App.pollEvent(Event))
-        {
+        while (App.pollEvent(Event)) {
             // Window closed
-            if (Event.type == sf::Event::Closed)
-            {
+            if (Event.type == sf::Event::Closed) {
                 return state::stop;
             }
 

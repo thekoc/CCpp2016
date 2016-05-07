@@ -9,8 +9,7 @@ void set_center(std::vector<sf::Text *>menus, sf::RenderWindow& App) {
     float width       = App.getSize().x;
     float total_heigh = 0;
 
-    for (auto menu : menus)
-    {
+    for (auto menu : menus) {
         menu->setCharacterSize(height / (menus.size() * 3));
         total_heigh += menu->getGlobalBounds().height;
     }
@@ -78,21 +77,17 @@ state menu_scene::Run(sf::RenderWindow& App) {
     set_center(menus, App);
 
 
-    while (App.isOpen())
-    {
+    while (App.isOpen()) {
         sf::Event Event;
 
-        while (App.pollEvent(Event))
-        {
+        while (App.pollEvent(Event)) {
             // Window closed
-            if (Event.type == sf::Event::Closed)
-            {
+            if (Event.type == sf::Event::Closed) {
                 return state::stop;
             }
 
             // Key pressed
-            if (Event.type == sf::Event::KeyPressed)
-            {
+            if (Event.type == sf::Event::KeyPressed) {
                 switch (Event.key.code) {
                 case sf::Keyboard::W:
 

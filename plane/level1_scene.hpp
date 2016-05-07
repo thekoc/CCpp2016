@@ -4,9 +4,9 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include "Universe.hpp"
-#include "cScreen.hpp"
+#include "scene.hpp"
 
-class level1_scene : public cScreen {
+class level1_scene : public scene {
 private:
 
 public:
