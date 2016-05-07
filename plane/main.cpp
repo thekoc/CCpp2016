@@ -9,7 +9,9 @@ int main()
     std::map<state, cScreen *> Screens;
 
     // Window creation
-    sf::RenderWindow App(sf::VideoMode(800, 600), "The Trueman Show");
+    sf::RenderWindow App(sf::VideoMode(1200, 800), "The Trueman Show");
+
+    App.clear();
 
     App.setFramerateLimit(60);
 

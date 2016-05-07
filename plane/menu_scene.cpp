@@ -4,6 +4,38 @@
 
 menu_scene::menu_scene(void) {}
 
+void set_center(std::vector<sf::Text *>menus, sf::RenderWindow& App) {
+    float height      = App.getSize().y;
+    float width       = App.getSize().x;
+    float total_heigh = 0;
+
+    for (auto menu : menus)
+    {
+        menu->setCharacterSize(height / (menus.size() * 3));
+        total_heigh += menu->getGlobalBounds().height;
+    }
+    float spacey       = (height - total_heigh) / (menus.size() + 1);
+    float relative_top = 0;
+
+    for (auto menu: menus) {
+        float menu_width  = menu->getGlobalBounds().width;
+        float menu_height = menu->getGlobalBounds().height;
+        relative_top += spacey;
+        float spacex = (width - menu_width) / 2;
+        menu->setPosition(spacex, relative_top);
+        relative_top += menu_height;
+    }
+}
+
+void config_text(sf::Text *text, sf::String content,
+                 std::vector<sf::Text *>& menus,
+                 sf::Font& font) {
+    menus.push_back(text);
+
+    text->setFont(font);
+    text->setString(content);
+}
+
 state menu_scene::Run(sf::RenderWindow& App) {
     sf::Font Font;
 
@@ -11,11 +43,18 @@ state menu_scene::Run(sf::RenderWindow& App) {
         std::cerr << "Error loading verdanab.ttf" << std::endl;
         return state::stop;
     }
-    sf::Text Menu1;
-    Menu1.setFont(Font);
-    Menu1.setCharacterSize(20);
-    Menu1.setString("menu");
-    Menu1.setPosition(sf::Vector2f(280.f, 160.f));
+
+    std::vector<sf::Text *> menus;
+
+    sf::Text continue_menu;
+    sf::Text mute_menu;
+    sf::Text exit_menu;
+
+    config_text(&continue_menu, L"继续", menus, Font);
+    config_text(&mute_menu,     L"静音", menus, Font);
+    config_text(&exit_menu,     L"退出", menus, Font);
+
+    set_center(menus, App);
 
 
     while (App.isOpen())
@@ -48,7 +87,9 @@ state menu_scene::Run(sf::RenderWindow& App) {
         App.clear();
 
         // App.draw(...);
-        App.draw(Menu1);
+        for (auto menu : menus) {
+            App.draw(*menu);
+        }
 
         // end the current frame
         App.display();
