@@ -16,6 +16,7 @@ state level1_scene::Run(sf::RenderWindow& App) {
 
     while (App.isOpen())
     {
+        universe.update_bullet_time_mode();
         sf::Event Event;
 
         while (App.pollEvent(Event))
@@ -29,7 +30,7 @@ state level1_scene::Run(sf::RenderWindow& App) {
             if (Event.KeyPressed) {
                 switch (Event.key.code) {
                 case sf::Keyboard::L:
-                    universe.time_rate = 0.1;
+                    universe.bullet_time_on();
                     break;
 
                 default:

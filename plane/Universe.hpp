@@ -7,12 +7,19 @@
 class Universe {
 private:
 
+    sf::Clock clock;
+    bool  bullet_time = false;
+    float bullet_time_duration;
+
 public:
 
     float time_rate;
     std::vector<Entity *> Entities;
+
     Universe(float time_rate) : time_rate(time_rate) {}
 
+    void bullet_time_on(float duration = -1);
+    void update_bullet_time_mode();
     void bind(Entity *entity);
 };
 
